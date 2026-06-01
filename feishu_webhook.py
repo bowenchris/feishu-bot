@@ -20,8 +20,8 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-# 消息存储路径（Zeabur 持久化目录）
-MESSAGE_FILE = "/data/feishu_messages.json"
+# 消息存储文件（存储在应用根目录）
+MESSAGE_FILE = "feishu_messages.json"
 
 
 def load_messages():
