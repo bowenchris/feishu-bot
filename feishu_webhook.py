@@ -53,6 +53,9 @@ def save_message(msg_type, content, sender=None, chat_id=None):
 def webhook():
     """飞书开放平台事件回调入口"""
     data = request.json
+    raw = request.get_data(as_text=True)
+    logger.info(f"收到请求: {raw[:500]}")
+
     if not data:
         return jsonify({"code": -1, "msg": "no data"})
 
@@ -100,7 +103,7 @@ def webhook():
         return jsonify({"code": 0})
 
     # 其他事件
-    logger.info(f"收到其他事件: {event_type}")
+    logger.info(f"收到未处理事件: {event_type}, header: {json.dumps(header)[:200]}")
     return jsonify({"code": 0})
 
 
